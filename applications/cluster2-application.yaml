@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/greplines/rabbitmq_argocd.git
     targetRevision: main
-    path: manifests/cluster3
+    path: manifests/cluster2
   destination:
     server: https://kubernetes.default.svc
     namespace: rabbitmq-system
