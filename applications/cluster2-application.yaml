@@ -1,16 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rabbitmq-cluster2
+  name: rabbitmq-cluster1
   namespace: argocd
 spec:
   project: rabbitmq-clusters
   source:
     repoURL: https://github.com/greplines/rabbitmq_argocd.git
     targetRevision: main
-    path: manifests/cluster2
-    directory:
-      recurse: true
+    path: manifests/cluster1
   destination:
     server: https://kubernetes.default.svc
     namespace: rabbitmq-system
@@ -18,5 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true

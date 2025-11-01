@@ -9,8 +9,6 @@ spec:
     repoURL: https://github.com/greplines/rabbitmq_argocd.git
     targetRevision: main
     path: manifests/cluster1
-    directory:
-      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: rabbitmq-system
@@ -18,5 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
