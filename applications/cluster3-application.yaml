@@ -6,7 +6,7 @@ metadata:
 spec:
   project: rabbitmq-clusters
   source:
-    repoURL: https://github.com/greplines/rabbitmq-clusters.git
+    repoURL: https://github.com/greplines/rabbitmq_argocd.git
     targetRevision: main
     path: manifests/cluster3
     directory:
