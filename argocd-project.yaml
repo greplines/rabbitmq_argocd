@@ -8,7 +8,7 @@ spec:
   sourceRepos:
   - '*'
   destinations:
-  - namespace: rabbitmq-*
+  - namespace: rabbitmq-system
     server: https://kubernetes.default.svc
   - namespace: '*'
     server: https://kubernetes.default.svc

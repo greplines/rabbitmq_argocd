@@ -13,7 +13,7 @@ spec:
       recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: rabbitmq-cluster2
+    namespace: rabbitmq-system
   syncPolicy:
     automated:
       prune: true

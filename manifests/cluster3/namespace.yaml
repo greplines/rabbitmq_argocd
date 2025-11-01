@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: rabbitmq-cluster3
+  name: rabbitmq-system
   labels:
     app: rabbitmq
     cluster: cluster3
