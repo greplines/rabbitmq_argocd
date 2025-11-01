@@ -1,0 +1,34 @@
+cat > .gitignore << 'EOF'
+# Archivos temporales
+*.tmp
+*.log
+*.bak
+
+# Kubeconfig
+kubeconfig.yaml
+*.kubeconfig
+.kube/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+vendor/
+
+# Entornos virtuales
+.env
+.venv
+venv/
+EOF

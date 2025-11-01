@@ -1,0 +1,25 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: cluster2
+  namespace: rabbitmq-cluster2
+spec:
+  replicas: 1
+  image: rabbitmq:3.12-management
+  service:
+    type: ClusterIP
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1000m"
+  rabbitmq:
+    additionalConfig: |
+      default_user=admin
+      default_pass=admin
+      disk_free_limit.absolute = 1GB
+    additionalPlugins:
+      - rabbitmq_peer_discovery_k8s
+      - rabbitmq_prometheus

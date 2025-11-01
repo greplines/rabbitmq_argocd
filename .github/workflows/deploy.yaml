@@ -1,0 +1,45 @@
+name: Deploy RabbitMQ Clusters
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: Validate Manifests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Validate Kubernetes manifests
+      run: |
+        echo "Validando manifests..."
+        for cluster in cluster1 cluster2 cluster3; do
+          echo "Validando $cluster..."
+          kustomize build manifests/$cluster/ --enable-helm
+        done
+        
+    - name: Validate ArgoCD applications
+      run: |
+        kubectl apply --dry-run=client -f applications/
+        kubectl apply --dry-run=client -f argocd-project.yaml
+
+  deploy:
+    name: Deploy to Cluster
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy using scripts
+      run: |
+        chmod +x scripts/deploy.sh
+        scripts/deploy.sh --force
+      env:
+        KUBECONFIG: ${{ secrets.KUBECONFIG }}

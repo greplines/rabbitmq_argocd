@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: rabbitmq-clusters
+  namespace: argocd
+spec:
+  description: RabbitMQ Clusters Project
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: rabbitmq-*
+    server: https://kubernetes.default.svc
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: rabbitmq.com
+    kind: '*'
+  roles:
+  - name: rabbitmq-admin
+    description: RabbitMQ Administrator
+    policies:
+    - p, proj:rabbitmq-clusters:rabbitmq-admin, applications, get, rabbitmq-clusters/*, allow
+    - p, proj:rabbitmq-clusters:rabbitmq-admin, applications, sync, rabbitmq-clusters/*, allow
